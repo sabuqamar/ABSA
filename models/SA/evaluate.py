@@ -11,7 +11,7 @@ def get_sent_mask(sent, terms):
 	sys.path.append(script_dir)
 
 	# Update the relative path of the file being opened
-	file_path = os.path.join(script_dir,"sa_sent_word2id")
+	file_path = os.path.join(script_dir,"../Checkpoints/sa_sent_word2id")
 	with open(file_path, "rb") as f:
 		word2id = cPickle.load(f)
 	sent_tokens = tokenize(sent)
@@ -38,11 +38,11 @@ def evaluate(sent, terms):
 	sys.path.append(script_dir)
 
 	# Update the relative path of the file being opened
-	file_path = os.path.join(script_dir,"sa_sent_model")
+	file_path = os.path.join(script_dir,"../Checkpoints/sa_sent_model")
 	model = torch.load(file_path)
 	model.eval()
 
-	print("transitions matrix ", model.inter_crf.transitions.data)
+	# print("transitions matrix ", model.inter_crf.transitions.data)
 	# Initialize empty lists to store true labels and predicted labels
 	labels = []
 	for mask in masks:

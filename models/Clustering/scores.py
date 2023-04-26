@@ -11,14 +11,15 @@ def get_vector(text):
     return outputs.last_hidden_state[:, 0, :].detach().numpy()
 
 def get_score(label):
-    if label == 0:
+    if label == "positive" or label == 0:
         return 1
-    elif label == 2:
+    elif label == "negative" or label == 2:
         return -1
     return 0
 def get_clusters(terms, labels):
     categories = ["service", "food", "price", "ambience"]
     categories_scores = [0, 0, 0, 0]
+    categories_total = [0, 0, 0, 0]
     category_vectors = [get_vector(cat) for cat in categories]
     word_vectors = [get_vector(word) for word in terms]
 
@@ -31,8 +32,8 @@ def get_clusters(terms, labels):
         if max_similarity >= similarity_threshold:
             category_index = similarities.index(max_similarity)
             category_assignments.append(categories[category_index])
-            print(labels[idx])
             categories_scores[category_index] += get_score(labels[idx])
+            categories_total[category_index] += 1
         else:
             category_assignments.append(None)
-    return categories_scores
+    return categories_scores, categories_total
