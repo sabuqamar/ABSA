@@ -1,1 +1,11 @@
-tokenizer==3.4.2
+pandas
+selenium
+transformers
+scikit-learn
+torch
+beautifulsoup4
+argparse
+datasets
+numpy
+tqdm
+nltk
