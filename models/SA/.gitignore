@@ -1,0 +1,5 @@
+.DS_Store
+.vscode/
+*.pyc
+env
+data/glove/*
