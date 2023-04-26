@@ -71,7 +71,7 @@ def train():
             best_model = copy.deepcopy(model)
     evaluate_test(test_batch, best_model)
     print("Finish with best dev acc {0}".format(best_acc))
-    torch.save(model, "../Checkpoints/sa_sent_model")
+    torch.save(model, "sa_sent_model")
 
 def visualize(sent, mask, best_seq, pred_label, gold):
     try:
