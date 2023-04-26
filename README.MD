@@ -1,4 +1,3 @@
-# Your Project
 # Restaurant Comparison using Aspect-Based Sentiment Analysis and Topic Clustering using BERT
 
 Often times, a review for a restaurant cannot capture the true semantic message behind the reviewer's words. While a rating of 3/5 might mean that the person found the place rather mediocre, the details in the review they write could provide a greater understanding of the restaurant, its service, ambience, food quality and price. 
