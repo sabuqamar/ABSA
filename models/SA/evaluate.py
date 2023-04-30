@@ -2,6 +2,7 @@ import os, sys, torch
 import _pickle as cPickle
 import tokenizer
 import nltk
+import string
 
 def get_sent_mask(sent, terms):
 # 	Get the absolute path of the directory containing the script
@@ -14,8 +15,12 @@ def get_sent_mask(sent, terms):
 	file_path = os.path.join(script_dir,"../Checkpoints/sa_sent_word2id")
 	with open(file_path, "rb") as f:
 		word2id = cPickle.load(f)
+
+	print(word2id)
 	sent_tokens = tokenize(sent)
+	print(sent_tokens)
 	sent_inds = [word2id[x] if x in word2id else word2id["UNK"] for x in sent_tokens]
+	print(sent_inds)
 	masks = []
 
 	for term in terms:
@@ -54,7 +59,6 @@ def tokenize(sent_str):
 	sent_str = " ".join(sent_str.split("-"))
 	sent_str = " ".join(sent_str.split("/"))
 	sent_str = " ".join(sent_str.split("!"))
-	tokens = tokenizer.tokenize(sent_str)
-	return [str(token) if not isinstance(token, str) else token for token in tokens]
+	return [word.strip(string.punctuation) for word in sent_str.split()]
 
 
